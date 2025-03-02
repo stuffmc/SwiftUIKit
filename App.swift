@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        button.setTitle("Inc from UIKit", for: .normal)
+        button.setTitle("++UIKit", for: .normal)
         button.addTarget(viewModel, action: #selector(ViewModel.increment), for: .touchUpInside)
         let stackView = UIStackView(arrangedSubviews: [label, button,
            UIHostingController(rootView: ContentView(viewModel: viewModel)).view
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     
     func observe() {
         withObservationTracking {
-            label.text = "UIKit: \(viewModel.count)"
+            label.text = "UIKit: \(viewModel.count), \(viewModel.bool)"
         } onChange: { Task { @MainActor in self.observe() } }
     }
 }
@@ -50,7 +50,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Button("Inc from SwiftUI") { viewModel.increment() }
+            Button("++SwiftUI") { viewModel.increment() }
             Text("SwiftUI: \(viewModel.count)")
             Toggle("Bool", isOn: $viewModel.bool)
         }
