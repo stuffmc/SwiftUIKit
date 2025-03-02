@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        label.textColor = .white
+        view.backgroundColor = .white
         button.setTitle("Inc from UIKit", for: .normal)
         button.addTarget(viewModel, action: #selector(ViewModel.increment), for: .touchUpInside)
         let stackView = UIStackView(arrangedSubviews: [label, button,
@@ -56,13 +56,6 @@ struct ContentView: View {
     }
 }
 
-struct RepresentedView: UIViewRepresentable {
-    let vc = ViewController()
-    func makeUIView(context: Context) -> some UIView { vc.view }
-    func updateUIView(_ uiView: UIViewType, context: Context) { }
-}
-
 #Preview {
-    RepresentedView()
-        .background(Color.black)
+    ViewController()
 }
