@@ -40,17 +40,19 @@ class ViewController: UIViewController {
 }
 
 @Observable class ViewModel {
+    var bool = false
     private(set) var count = 0
     @objc func increment() { count += 1 }
 }
 
 struct ContentView: View {
-    var viewModel: ViewModel
+    @Bindable var viewModel: ViewModel
 
     var body: some View {
         VStack {
             Button("Inc from SwiftUI") { viewModel.increment() }
             Text("SwiftUI: \(viewModel.count)")
+            Toggle("Bool", isOn: $viewModel.bool)
         }
         .background(Color.yellow)
     }
